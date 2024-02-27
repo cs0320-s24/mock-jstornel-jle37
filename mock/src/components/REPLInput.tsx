@@ -6,6 +6,8 @@ interface REPLInputProps {
   // TODO: Fill this with desired props... Maybe something to keep track of the submitted commands
   history: string[];
   setHistory: Dispatch<SetStateAction<string[]>>;
+  isVerbose: boolean;
+  setVerbose: Dispatch<SetStateAction<boolean>>;
 }
 // You can use a custom interface or explicit fields or both! An alternative to the current function header might be:
 // REPLInput(history: string[], setHistory: Dispatch<SetStateAction<string[]>>)
@@ -13,16 +15,17 @@ export function REPLInput(props: REPLInputProps) {
   // Remember: let React manage state in your webapp.
   // Manages the contents of the input box
   const [commandString, setCommandString] = useState<string>("");
-  // TODO WITH TA : add a count state
+  //creates a count variable and state
   const [count, setCount] = useState<number>(0);
-  // TODO WITH TA: build a handleSubmit function called in button onClick
-  // TODO: Once it increments, try to make it push commands... Note that you can use the `...` spread syntax to copy what was there before
-  // add to it with new commands.
-  /**
-   * We suggest breaking down this component into smaller components, think about the individual pieces
-   * of the REPL and how they connect to each other...
-   */
+  //creates a mode variable and sets mode to brief at start 
+  const [isVerbose, setIsVerbose] = useState<boolean>(false);
+  //creates an action state for command
+  const [action, setAction] = useState<string>("");
+
   function handleSubmit(commandString: string) {
+    if (commandString === "mode") {
+      props.setVerbose(!props.isVerbose);
+    }
     setCount(count + 1);
     props.setHistory([...props.history, commandString]);
     setCommandString("");
