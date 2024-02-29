@@ -12,7 +12,7 @@ interface viewCSVProps {
 // }
 
 
-export const tableContent = data!.map((row) => {
+export const tableContent = exampleHouses.map((row) => {
   return (
     <table align="center">
       {
