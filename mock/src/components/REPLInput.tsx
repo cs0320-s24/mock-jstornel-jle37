@@ -9,6 +9,7 @@ interface REPLInputProps {
   isVerbose: boolean;
   setVerbose: Dispatch<SetStateAction<boolean>>;
 }
+
 // You can use a custom interface or explicit fields or both! An alternative to the current function header might be:
 // REPLInput(history: string[], setHistory: Dispatch<SetStateAction<string[]>>)
 export function REPLInput(props: REPLInputProps) {
@@ -17,10 +18,8 @@ export function REPLInput(props: REPLInputProps) {
   const [commandString, setCommandString] = useState<string>("");
   //creates a count variable and state
   const [count, setCount] = useState<number>(0);
-  //creates a mode variable and sets mode to brief at start 
-  const [isVerbose, setIsVerbose] = useState<boolean>(false);
-  //creates an action state for command
-  const [action, setAction] = useState<string>("");
+  //creates a mode variable and sets mode to brief at start
+  const [isVerbose, setVerbose] = useState<boolean>(false);
 
   function handleSubmit(commandString: string) {
     if (commandString === "mode") {

@@ -10,7 +10,7 @@ interface viewCSVProps {
 
 const data = getMockedJson("data/exampleHouses.csv");
 
-export const tableContent = exampleHouses.map((row) => {
+export const tableContent = data!.map((row) => {
   return (
     <table align="center">
       {

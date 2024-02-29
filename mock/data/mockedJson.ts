@@ -22,3 +22,7 @@ export const malformedCSV = [
     ["Anna", 19, false],
     ["Josh", 20, true, true]
   ];
+
+export const csvNotFound = [
+  [""]
+];
