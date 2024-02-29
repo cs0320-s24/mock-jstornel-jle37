@@ -17,7 +17,7 @@ export function REPLInput(props: REPLInputProps) {
   const [commandString, setCommandString] = useState<string>("");
   //creates a count variable and state
   const [count, setCount] = useState<number>(0);
-  //creates a mode variable and sets mode to brief at start 
+  //creates a mode variable and sets mode to brief at start
   const [isVerbose, setIsVerbose] = useState<boolean>(false);
   //creates an action state for command
   const [action, setAction] = useState<string>("");
@@ -42,6 +42,7 @@ export function REPLInput(props: REPLInputProps) {
           value={commandString}
           setValue={setCommandString}
           ariaLabel={"Command input"}
+          placeholderText={"Enter command here!"}
         />
       </fieldset>
       {/* TODO WITH TA: Build a handleSubmit function that increments count and displays the text in the button */}

@@ -22,3 +22,15 @@ export const malformedCSV = [
     ["Anna", 19, false],
     ["Josh", 20, true, true]
   ];
+
+
+export const oneColumn = [
+  ["Row 0"],
+  ["Row 1"],
+  ["Row 2"],
+  ["Row 3"]
+];
+
+
+export const emptyCSV = [
+  []];

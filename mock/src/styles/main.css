@@ -30,6 +30,11 @@
   margin-right: auto;
 }
 
+.login-input {
+    margin: auto;
+    height: 10vh;
+}
+
 button {
   margin: auto;
   display: block;

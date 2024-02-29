@@ -3,12 +3,14 @@ import { getMockedJson } from "../../data/dataMap";
 import { exampleHouses } from "../../data/mockedJson";
 
 interface viewCSVProps {
-  // TODO: Fill with some shared state tracking all the pushed commands
   mockedJson: (string | number | boolean)[][];
   isBrief: boolean;
 }
 
-const data = getMockedJson("data/exampleHouses.csv");
+// if (input) in dataMap {
+//     const data = getMockedJson("data/exampleHouses.csv");
+// }
+
 
 export const tableContent = exampleHouses.map((row) => {
   return (

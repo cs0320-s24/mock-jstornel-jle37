@@ -10,15 +10,20 @@ import REPL from "./REPL";
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   // const [isVerbose, setIsVerbose] = useState<boolean>(false);
+  const [loginString, setLoginString] = useState<string>("");
 
   return (
     <div className="App">
       <p className="App-header">
         <h1>Mock</h1>
-        <LoginButton isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+        <LoginButton
+          isLoggedIn={isLoggedIn}
+          setIsLoggedIn={setIsLoggedIn}
+          loginString={loginString}
+          setLoginString={setLoginString}
+        />
         {/* <OutputMode isVerbose={isVerbose} setIsVerbose={setIsVerbose} /> */}
       </p>
-
       {isLoggedIn && <REPL />}
     </div>
   );
