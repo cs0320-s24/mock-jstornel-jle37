@@ -8,6 +8,7 @@ interface REPLHistoryProps {
   history: string[];
   isVerbose: boolean;
 }
+
 export function REPLHistory(props: REPLHistoryProps) {
   return (
     <div className="repl-history">

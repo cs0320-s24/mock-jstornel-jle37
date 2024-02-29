@@ -1,9 +1,11 @@
+import { useState } from "react";
 import { tableContent } from "../methods/view";
+import { table } from "console";
 
 const commandDictionary: { [key: string]: any } = {};
 commandDictionary["load"] = "success";
 commandDictionary["view"] = tableContent;
-commandDictionary["search"] = "Row 1";
+commandDictionary["search"] = tableContent.at(1);
 
 export function getOutputType(command: string) {
   for (var key in commandDictionary) {

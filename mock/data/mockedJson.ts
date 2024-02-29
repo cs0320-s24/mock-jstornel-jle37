@@ -23,7 +23,6 @@ export const malformedCSV = [
     ["Josh", 20, true, true]
   ];
 
-
 export const oneColumn = [
   ["Row 0"],
   ["Row 1"],
