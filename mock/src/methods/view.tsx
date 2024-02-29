@@ -1,27 +1,29 @@
 import { createElement } from "react";
-import { getMockedJson } from "../../data/dataMap";
-import { exampleHouses } from "../../data/mockedJson";
+import { getMockedJson, dataMap } from "../../data/dataMap";
 
 interface viewCSVProps {
-  mockedJson: (string | number | boolean)[][];
-  isBrief: boolean;
+  history: string[];
 }
 
-// if (input) in dataMap {
-//     const data = getMockedJson("data/exampleHouses.csv");
-// }
+export function view(command: string) {
+  // const len = props.history.length;
+  // const command = props.history[-1];
+  // const filepath = command.substring(command.indexOf("data/"));
+  const data = getMockedJson(command);
+  const tableContent = data!.map((row) => {
+    return (
+      <table align="center">
+        {
+          <tr>
+            {row.map((item) => (
+              <td>{item}</td>
+            ))}
+          </tr>
+        }
+      </table>
+    );
+  });
 
-
-export const tableContent = exampleHouses.map((row) => {
-  return (
-    <table align="center">
-      {
-        <tr>
-          {row.map((item) => (
-            <td>{item}</td>
-          ))}
-        </tr>
-      }
-    </table>
-  );
-});
+  return tableContent;
+  // return [[command]];
+}

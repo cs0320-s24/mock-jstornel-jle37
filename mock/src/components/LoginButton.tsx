@@ -16,39 +16,53 @@ export function LoginButton(props: loginProps) {
     return newValue;
   };
 
-  function handleSubmit(loginString: string, props: loginProps) {
-    const newValue = !props.isLoggedIn;
-    if (loginString != "") {
-      props.setIsLoggedIn(newValue);
-    }
-    props.setLoginString("");
+  if (props.isLoggedIn) {
     return (
       <button aria-label="Sign Out" onClick={authenticate}>
         Sign out
       </button>
     );
-  }
-
-  return (
-    <div className="login-input">
-      <fieldset>
-        <legend>Login:</legend>
-        <ControlledInput
-          value={props.loginString}
-          setValue={props.setLoginString}
-          ariaLabel={"Login input"}
-          placeholderText={"Enter Password"}
-        />
-      </fieldset>
-      <button
-        aria-label="Login"
-        onClick={() => handleSubmit(props.loginString, props)}
-      >
+  } else {
+    return (
+      <button aria-label="Login" onClick={authenticate}>
         Login
       </button>
-      {/* {isLoggedIn(props)} */}
-    </div>
-  );
+    );
+  }
+
+  // function handleSubmit(loginString: string, props: loginProps) {
+  //   const newValue = !props.isLoggedIn;
+  //   if (loginString != "") {
+  //     props.setIsLoggedIn(newValue);
+  //   }
+  //   props.setLoginString("");
+  //   return (
+  //     <button aria-label="Sign Out" onClick={authenticate}>
+  //       Sign out
+  //     </button>
+  //   );
+  // }
+
+  // return (
+  //   <div className="login-input">
+  //     <fieldset>
+  //       <legend>Login:</legend>
+  //       <ControlledInput
+  //         value={props.loginString}
+  //         setValue={props.setLoginString}
+  //         ariaLabel={"Login input"}
+  //         placeholderText={"Enter Password"}
+  //       />
+  //     </fieldset>
+  //     <button
+  //       aria-label="Login"
+  //       onClick={() => handleSubmit(props.loginString, props)}
+  //     >
+  //       Login
+  //     </button>
+  //     {/* {isLoggedIn(props)} */}
+  //   </div>
+  // );
 }
 
 // function isLoggedIn(props: loginProps) {

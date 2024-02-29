@@ -1,6 +1,6 @@
 import "../styles/main.css";
-import { getMockedJson } from "../../data/dataMap";
-import { tableContent } from "../methods/view";
+// import { getMockedJson } from "../../data/dataMap";
+// import { tableContent } from "../methods/view";
 import { getOutputType } from "./CommandOutput";
 
 interface REPLHistoryProps {

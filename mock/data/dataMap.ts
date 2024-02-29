@@ -16,5 +16,5 @@ export function getMockedJson(filepath: string) {
   if (dataMap.has(filepath)) {
     return dataMap.get(filepath);
   }
-  return "data not found";
+  return [["data not found"]];
 }
