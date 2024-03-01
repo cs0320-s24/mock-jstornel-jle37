@@ -1,5 +1,9 @@
 import { useState } from "react";
 import { view } from "../methods/view";
+import {
+  defaultCommandDictionary,
+  updateDictionary,
+} from "../methods/commands";
 
 interface commandOutputProps {
   history: string[];
@@ -10,10 +14,8 @@ export function getOutputType(command: string) {
   const commandArray = command.split(" ");
   // setFilepath(commandArray[1]);
 
-  const commandDictionary: { [key: string]: any } = {};
-  commandDictionary["load"] = "successfully loaded " + commandArray.at(-1);
-  commandDictionary["view"] = view(commandArray.at(-1)!);
-  commandDictionary["search"] = view(commandArray.at(-1)!).at(1);
+  const commandDictionary = defaultCommandDictionary(commandArray.at(-1)!);
+  updateDictionary(commandDictionary, "mode", "mode changed");
 
   for (var key in commandDictionary) {
     if (command.includes(key)) {
