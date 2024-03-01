@@ -31,11 +31,32 @@
 }
 
 .login-input {
-    margin: auto;
-    height: 10vh;
+  margin: auto;
+  height: 10vh;
 }
 
 button {
   margin: auto;
   display: block;
+}
+
+table {
+  table-layout: fixed;
+  width: 50%;
+  border-collapse: collapse;
+  border-style: dashed;
+}
+
+td {
+  border-bottom: 1em;
+  text-align: center;
+  vertical-align: middle;
+}
+
+tr {
+  margin: auto;
+  text-align: center;
+  align-items: baseline;
+  width: fit-content;
+  height: fit-content;
 }
