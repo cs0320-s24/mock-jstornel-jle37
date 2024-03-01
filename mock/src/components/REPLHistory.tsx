@@ -17,10 +17,10 @@ export function REPLHistory(props: REPLHistoryProps) {
       {props.history.map((command, index) =>
         props.isVerbose ? (
           <p>
-            Command: {command} <br></br> Output: {getOutputType(command)}
+            Command: {command} <br></br> Output: {getOutputType(command, props.isVerbose)}
           </p>
         ) : (
-          <p>Output: {getOutputType(command)}</p>
+          <p>Output: {getOutputType(command, props.isVerbose)}</p>
         )
       )}
     </div>
