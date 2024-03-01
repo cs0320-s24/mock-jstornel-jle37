@@ -11,9 +11,9 @@ export function getOutputType(command: string) {
   // setFilepath(commandArray[1]);
 
   const commandDictionary: { [key: string]: any } = {};
-  commandDictionary["load"] = "successfully loaded " + commandArray[1];
-  commandDictionary["view"] = view(commandArray[1]);
-  commandDictionary["search"] = view(commandArray[3]).at(1);
+  commandDictionary["load"] = "successfully loaded " + commandArray.at(-1);
+  commandDictionary["view"] = view(commandArray.at(-1)!);
+  commandDictionary["search"] = view(commandArray.at(-1)!).at(1);
 
   for (var key in commandDictionary) {
     if (command.includes(key)) {
