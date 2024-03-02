@@ -53,16 +53,19 @@ test("after I type into the input box, its text changes", async ({ page }) => {
   await expect(page.getByLabel("Command input")).toHaveValue(mock_input);
 });
 
+/* Tests that submit button appears after login button is clicked */
 test("on page load, i see a button", async ({ page }) => {
   await page.getByLabel("Login").click();
   await expect(page.getByLabel("Submit")).toBeVisible();
 });
 
+/* Tests that the count for times submitted increments after the submit button is clicked */
 test("after I click the button, its label increments", async ({ page }) => {
   await page.getByLabel("Login").click();
   await page.getByLabel("Submit").click();
   await expect(page.getByLabel("Submit")).toHaveText("Submitted 1 time");
 });
+
 
 test("after I click the button, my command gets pushed", async ({ page }) => {
   await page.getByLabel("Login").click();
@@ -161,7 +164,13 @@ test("viewing a malformed csv", async ({page}) => {
   await page.getByLabel("Command input").click();
   await page.getByLabel("Command input").fill("view data/malformedCSV.csv");
   await page.getByLabel("Submit").click();
+
+  //checking for expected elements
   await expect(page.getByLabel("viewTable")).toBeVisible();
+  await expect(page.getByLabel("viewTable")).toHaveText("Name");
+  await expect(page.getByLabel("viewTable")).toHaveText("isDead");
+  await expect(page.getByLabel("viewTable")).toHaveText("Jordan");
+  await expect(page.getByLabel("viewTable")).toHaveText("19");
 });
 
 test("viewing a one column csv", async ({page}) => {
@@ -195,9 +204,24 @@ test("viewing an empty csv", async ({page}) => {
   await page.getByLabel("Command input").click();
   await page.getByLabel("Command input").fill("view data/emptyCSV.csv");
   await page.getByLabel("Submit").click();
+
   await expect(page.getByLabel("viewTable")).toBeEmpty();
+  await expect(page.getByLabel("viewTable")).not.toHaveText("Type");
 });
 
 test("using the mode command switches between verbose and brief output", async ({page}) => {
+  await page.getByLabel("Login").click();
+  await page.getByLabel("Command input").click();
+  await page
+    .getByLabel("Command input")
+    .fill("load data/emptyCSV.csv");
+  await page.getByLabel("Submit").click();
 
+  await expect(page.getByText("Command: ")).not.toBeVisible();
+
+  await page.getByLabel("Command input").click();
+  await page.getByLabel("Command input").fill("mode");
+  await page.getByLabel("Submit").click();
+
+  await expect(page.getByText("Command: ")).toBeVisible();
 })
