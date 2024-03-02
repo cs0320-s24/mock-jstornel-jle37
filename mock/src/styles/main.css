@@ -40,6 +40,8 @@ button {
   display: block;
 }
 
+/* CSS for HTML table below */
+
 table {
   table-layout: fixed;
   width: 50%;
