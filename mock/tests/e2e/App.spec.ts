@@ -14,20 +14,18 @@ test.beforeEach(async ({ page }) => {
   await page.goto("http://localhost:8000/");
 });
 
+/* Tests whether expected title appears on webpage */
 test("has title", async ({ page }) => {
   await expect(page).toHaveTitle("Mock");
 });
-/**
- * Don't worry about the "async" yet. We'll cover it in more detail
- * for the next sprint. For now, just think about "await" as something
- * you put before parts of your test that might take time to run,
- * like any interaction with the page.
- */
+
+/* Tests if a login button appears upon loading the page */
 test("on page load, i see a login button", async ({ page }) => {
   // Notice: http, not https! Our front-end is not set up for HTTPs.
   await expect(page.getByLabel("Login")).toBeVisible();
 });
 
+/* Tests if input box does show unless logged in */
 test("on page load, i dont see the input box until login", async ({ page }) => {
   // Notice: http, not https! Our front-end is not set up for HTTPs.
   await expect(page.getByLabel("Sign Out")).not.toBeVisible();
@@ -39,6 +37,7 @@ test("on page load, i dont see the input box until login", async ({ page }) => {
   await expect(page.getByLabel("Command input")).toBeVisible();
 });
 
+/* Tests that the text in the inputbox is dynamic and updates */
 test("after I type into the input box, its text changes", async ({ page }) => {
   // Step 1: Navigate to a URL
   await page.getByLabel("Login").click();
@@ -139,5 +138,66 @@ test("searching a csv returns its first row", async ({page}) => {
   await page.getByLabel("Command input").fill("search data/exampleHouses.csv");
   await page.getByLabel("Submit").click();
 
-  await expect(page.getByText(""))
+  //all the items in the first row of this csv
+  await expect(page.getByText("Type")).toBeVisible();
+  await expect(page.getByText("id")).toBeVisible();
+  await expect(page.getByText("Price")).toBeVisible();
+  await expect(page.getByText("Acres")).toBeVisible();
+  await expect(page.getByText("Color")).toBeVisible();
+  
+  //items in remaining rows of csv
+  await expect(page.getByText("Mansion")).not.toBeVisible();
+  await expect(page.getByText("white")).not.toBeVisible();
 });
+
+test("viewing a malformed csv", async ({page}) => {
+  await page.getByLabel("Login").click();
+  await page.getByLabel("Command input").click();
+  await page
+    .getByLabel("Command input")
+    .fill("load data/malformedCSV.csv");
+  await page.getByLabel("Submit").click();
+
+  await page.getByLabel("Command input").click();
+  await page.getByLabel("Command input").fill("view data/malformedCSV.csv");
+  await page.getByLabel("Submit").click();
+  await expect(page.getByLabel("viewTable")).toBeVisible();
+});
+
+test("viewing a one column csv", async ({page}) => {
+  await page.getByLabel("Login").click();
+  await page.getByLabel("Command input").click();
+  await page
+    .getByLabel("Command input")
+    .fill("load data/oneColumn.csv");
+  await page.getByLabel("Submit").click();
+
+  await page.getByLabel("Command input").click();
+  await page.getByLabel("Command input").fill("view data/oneColumn.csv");
+  await page.getByLabel("Submit").click();
+
+  //checking for expected elements
+  await expect(page.getByLabel("viewTable")).toBeVisible();
+  await expect(page.getByLabel("viewTable")).toHaveText("Row 0");
+  await expect(page.getByLabel("viewTable")).toHaveText("Row 1");
+  await expect(page.getByLabel("viewTable")).toHaveText("Row 2");
+  await expect(page.getByLabel("viewTable")).toHaveText("Row 3");
+});
+
+test("viewing an empty csv", async ({page}) => {
+  await page.getByLabel("Login").click();
+  await page.getByLabel("Command input").click();
+  await page
+    .getByLabel("Command input")
+    .fill("load data/emptyCSV.csv");
+  await page.getByLabel("Submit").click();
+
+  await page.getByLabel("Command input").click();
+  await page.getByLabel("Command input").fill("view data/emptyCSV.csv");
+  await page.getByLabel("Submit").click();
+  await expect(page.getByLabel("viewTable")).toBeEmpty();
+});
+
+test("using the mode command switches between verbose and brief output", async ({page}) => {
+
+})
