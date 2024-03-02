@@ -18,10 +18,6 @@ export function REPLInput(props: REPLInputProps) {
   const [commandString, setCommandString] = useState<string>("");
   //creates a count variable and state
   const [count, setCount] = useState<number>(0);
-  //creates a mode variable and sets mode to brief at start
-  const [isVerbose, setIsVerbose] = useState<boolean>(false);
-  //creates an action state for command
-  const [action, setAction] = useState<string>("");
 
   function handleSubmit(commandString: string) {
     if (commandString === "mode") {

@@ -1,14 +1,6 @@
-import { createElement } from "react";
-import { getMockedJson, dataMap } from "../../data/dataMap";
-
-interface viewCSVProps {
-  history: string[];
-}
+import { getMockedJson } from "../../data/dataMap";
 
 export function view(command: string) {
-  // const len = props.history.length;
-  // const command = props.history[-1];
-  // const filepath = command.substring(command.indexOf("data/"));
   const data = getMockedJson(command);
   const tableContent = data!.map((row) => {
     return (
@@ -25,5 +17,4 @@ export function view(command: string) {
   });
 
   return tableContent;
-  // return [[command]];
 }
