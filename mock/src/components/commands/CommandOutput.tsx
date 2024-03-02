@@ -1,7 +1,7 @@
 import {
   defaultCommandDictionary,
   updateDictionary,
-} from "../methods/commands";
+} from "../../methods/commands";
 
 /**
  * Function that returns the appropriate output for a given command
@@ -11,7 +11,10 @@ import {
  */
 export function getOutputType(command: string, isVerbose: boolean) {
   const commandArray = command.split(" ");
-  const commandDictionary = defaultCommandDictionary(commandArray.at(-1)!, isVerbose);
+  const commandDictionary = defaultCommandDictionary(
+    commandArray.at(-1)!,
+    isVerbose
+  );
 
   //Test call for update dictionary (User Story 6)
   // updateDictionary(commandDictionary, "mode", "mode changed");

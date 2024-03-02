@@ -1,6 +1,6 @@
 import "../styles/main.css";
 import { Dispatch, SetStateAction, useState } from "react";
-import { ControlledInput } from "./ControlledInput";
+import { ControlledInput } from "../commands/ControlledInput";
 
 interface REPLInputProps {
   // TODO: Fill this with desired props... Maybe something to keep track of the submitted commands
@@ -19,7 +19,9 @@ export function REPLInput(props: REPLInputProps) {
   //creates a count variable and state
   const [count, setCount] = useState<number>(0);
 
+  //Updates REPL information after each command is entered
   function handleSubmit(commandString: string) {
+    /*Updates the isVerbose state each time the mode command is entered*/
     if (commandString === "mode") {
       props.setVerbose(!props.isVerbose);
     }

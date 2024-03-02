@@ -114,4 +114,15 @@ test("after I load an invalid csv, I get a failure message", async ({
   await expect(page.getByText("invalid filepath - load fail"));
 });
 
-// test("after I load a valid csv, I can view it", async);
+test("after I load a valid csv, I can view it", async ({page}) => {
+  await page.getByLabel("Login").click();
+  await page.getByLabel("Command input").click();
+  await page
+    .getByLabel("Command input")
+    .fill("load data/exampleNeighborhoods.csv");
+  await page.getByLabel("Submit").click();
+  await page.getByLabel("Command input").click();
+  await page.getByLabel("Command input").fill("view data/exampleNeighborhoods.csv");
+  await page.getByLabel("Submit").click();
+  await expect(page.getByLabel("viewTable")).toBeVisible();
+});
