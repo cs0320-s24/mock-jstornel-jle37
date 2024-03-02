@@ -121,8 +121,23 @@ test("after I load a valid csv, I can view it", async ({page}) => {
     .getByLabel("Command input")
     .fill("load data/exampleNeighborhoods.csv");
   await page.getByLabel("Submit").click();
+
   await page.getByLabel("Command input").click();
   await page.getByLabel("Command input").fill("view data/exampleNeighborhoods.csv");
   await page.getByLabel("Submit").click();
   await expect(page.getByLabel("viewTable")).toBeVisible();
+  await expect(page.getByLabel("viewTable")).toHaveText("IsGated");
+});
+
+test("searching a csv returns its first row", async ({page}) => {
+  await page.getByLabel("Login").click();
+  await page.getByLabel("Command input").click();
+  await page.getByLabel("Command input").fill("load data/exampleHouses.csv");
+  await page.getByLabel("Submit").click();
+
+  await page.getByLabel("Command input").click();
+  await page.getByLabel("Command input").fill("search data/exampleHouses.csv");
+  await page.getByLabel("Submit").click();
+
+  await expect(page.getByText(""))
 });
