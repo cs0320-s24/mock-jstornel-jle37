@@ -80,6 +80,27 @@ test("after I load a valid csv, I get a success message", async ({ page }) => {
   await page.getByLabel("Submit").click();
   await expect(page.getByText("successfully loaded data/exampleHouses.csv")).toBeVisible;
 
+  await page.getByLabel("Command input").fill("load data/exampleNeighborhoods.csv");
+  await page.getByLabel("Submit").click();
+  await expect(page.getByText("successfully loaded data/exampleNeighborhoods.csv")).toBeVisible;
 
+  await page.getByLabel("Command input").fill("load data/malformedCSV.csv");
+  await page.getByLabel("Submit").click();
+  await expect(page.getByText("successfully loaded data/malformedCSV.csv")).toBeVisible;
+
+  await page.getByLabel("Command input").fill("load data/oneColumn.csv");
+  await page.getByLabel("Submit").click();
+  await expect(page.getByText("successfully loaded data/oneColumn.csv")).toBeVisible;
+
+  await page.getByLabel("Command input").fill("load data/emptyCSV.csv");
+  await page.getByLabel("Submit").click();
+  await expect(page.getByText("successfully loaded data/emptyCSV.csv")).toBeVisible;
 
 });
+
+test("after I load an invalid csv, I get a failure message", async ({page}) => {
+  await page.getByLabel("Login").click();
+  await page.getByLabel("Command input").click();
+  await page.getByLabel("Command input").fill("load data");
+  await expect(page.getByText("i"))
+} )

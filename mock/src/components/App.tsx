@@ -19,8 +19,6 @@ function App() {
         <LoginButton
           isLoggedIn={isLoggedIn}
           setIsLoggedIn={setIsLoggedIn}
-          loginString={loginString}
-          setLoginString={setLoginString}
         />
         {/* <OutputMode isVerbose={isVerbose} setIsVerbose={setIsVerbose} /> */}
       </p>
