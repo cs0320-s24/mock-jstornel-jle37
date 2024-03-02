@@ -17,7 +17,7 @@ export function getOutputType(command: string, isVerbose: boolean) {
   // updateDictionary(commandDictionary, "mode", "mode changed");
 
   for (var key in commandDictionary) {
-    if (command.includes(key)) {
+    if (commandArray.at(0) === key) {
       return commandDictionary[key];
     }
   }
