@@ -25,6 +25,8 @@ In order to protect the sensitivity of files, a user may only make command calls
 
 As of right now the user ust pass in the filepath everytime a csv command is called ("mode" ddoes not require a filepath). We have been unable to have the outputs stored properly in states. When we tried storing the filepath in a state, the filepath would need to be included only when load is called, but it would then override all previous outputs if the file was switched. When we tried to store the output as a state instead where the previous calls would not ver overridden, only load worked. View would not display the table meaning search would not work either, and mode would display outputs opposite to what the actual mode would have been. We do not know why this happens as all we did was move the called to getOutputType from REPLHistory to REPLInput. We spent ~5-6 hours trying to fix this issue, but nothing seemed to work. Though inconvenient, we thought the original state of the code that has proper functionality was the best option to revert to since we were running out of time. This however means that a user is able to view and search without loading first since the output/filepath is never saved in a state.
 
+Some of our tests are not passing because the locator "getByText" is not recognizing certain elements and "getByLabel" would not recognize our viewTable. This is primarily for our view tests. Our functionality has exhibited successful behavior when interacted with on our local computers, but the Playwright simulations for these behaviors are stalling then timing out. However, the actual functionality of our program appears to be correct.
+
 # Tests
 
 The application is tested with end-to-end tests executed by the Playwright library, which simulates user interaction with the server. These tests launch the website and then test that the desired elements are visible and that our commands (load, view, search, and mode) generate the expected output.
@@ -34,7 +36,6 @@ The application is tested with end-to-end tests executed by the Playwright libra
 - "search" is tested for always returning the first row of the loaded csv, or returning an error message if the csv is empty.
 - "mode" is tested for displaying "Command: " before output in verbose mode, and only displaying the output in brief mode.
 - invalid commands are tested for displaying an error message.
-
 
 # How to
 

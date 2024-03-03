@@ -1,4 +1,4 @@
-import "../styles/main.css";
+import "../../styles/main.css";
 import { getOutputType } from "../commands/CommandOutput";
 
 interface REPLHistoryProps {
